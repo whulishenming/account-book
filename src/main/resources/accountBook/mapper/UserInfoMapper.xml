@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsm.accountBook.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.lsm.accountBook.domain.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="inviter_open_id" jdbcType="VARCHAR" property="inviterOpenId" />
+    <result column="registration_time" jdbcType="TIMESTAMP" property="registrationTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, open_id, nick_name, avatar_url, inviter_open_id, registration_time, last_login_time, 
+    create_time, update_time
+  </sql>
+
+  <insert id="insert" parameterType="com.lsm.accountBook.domain.UserInfo">
+    insert into t_user_info (id, open_id, nick_name, 
+      avatar_url, inviter_open_id, registration_time, 
+      last_login_time, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{avatarUrl,jdbcType=VARCHAR}, #{inviterOpenId,jdbcType=VARCHAR}, #{registrationTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <select id="selectByOpenId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_user_info
+    WHERE open_id = #{openId}
+    limit 1
+  </select>
+
+  <update id="updateByOpenId" parameterType="com.lsm.accountBook.domain.UserInfo">
+    UPDATE t_user_info
+    SET
+      nick_name = #{nickName},
+      avatar_url = #{avatarUrl},
+      last_login_time = #{lastLoginTime}
+    WHERE open_id = #{openId}
+  </update>
+
+</mapper>

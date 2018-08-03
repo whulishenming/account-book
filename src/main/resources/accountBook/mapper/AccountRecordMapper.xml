@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsm.accountBook.mapper.AccountRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lsm.accountBook.domain.AccountRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account_book_id" jdbcType="INTEGER" property="accountBookId" />
+    <result column="record_type" jdbcType="TINYINT" property="recordType" />
+    <result column="record_category_id" jdbcType="INTEGER" property="recordCategoryId" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="record_year" jdbcType="INTEGER" property="recordYear" />
+    <result column="record_month" jdbcType="INTEGER" property="recordMonth" />
+    <result column="record_day" jdbcType="INTEGER" property="recordDay" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, account_book_id, record_type, record_category_id, amount, record_year, record_month, 
+    record_day, remark, is_deleted, create_user, create_time, update_user, update_time
+  </sql>
+
+  <insert id="insert" parameterType="com.lsm.accountBook.domain.AccountRecord">
+    insert into t_account_record (id, account_book_id, record_type, 
+      record_category_id, amount, record_year, 
+      record_month, record_day, remark, 
+      is_deleted, create_user, create_time, 
+      update_user, update_time)
+    values (#{id,jdbcType=INTEGER}, #{accountBookId,jdbcType=INTEGER}, #{recordType,jdbcType=TINYINT}, 
+      #{recordCategoryId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{recordYear,jdbcType=INTEGER}, 
+      #{recordMonth,jdbcType=INTEGER}, #{recordDay,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+</mapper>

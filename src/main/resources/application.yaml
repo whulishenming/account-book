@@ -1,0 +1,7 @@
+datasource:
+  password: root
+  test:
+    url: "jdbc:mysql://localhost:3306/accountbookdb?characterEncoding=UTF-8"
+  username: root
+logging:
+  config: "classpath:log4j2_dev.xml"

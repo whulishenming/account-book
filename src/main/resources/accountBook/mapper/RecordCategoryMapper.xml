@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsm.accountBook.mapper.RecordCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.lsm.accountBook.domain.RecordCategory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="record_type" jdbcType="TINYINT" property="recordType" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_seq" jdbcType="INTEGER" property="categorySeq" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, record_type, category_name, category_seq, is_delete, create_user, create_time, 
+    update_user, update_time
+  </sql>
+
+  <insert id="insert" parameterType="com.lsm.accountBook.domain.RecordCategory">
+    insert into t_record_category (id, record_type, category_name, 
+      category_seq, is_delete, create_user, 
+      create_time, update_user, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{recordType,jdbcType=TINYINT}, #{categoryName,jdbcType=VARCHAR}, 
+      #{categorySeq,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+</mapper>
